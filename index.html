@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Q-Mission</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1f2937; /* Tailwind gray-800 */
+    }
+    /* Custom input focus style */
+    input:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Tailwind blue-500 */
+      border-color: #3b82f6;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-6">
+  <header class="mb-8 text-center">
+    <h1 class="text-4xl font-bold mb-1">Q-Mission</h1>
+    <a href="https://www.qmission.ai" class="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">www.qmission.ai</a>
+  </header>
+
+  <main class="w-full max-w-4xl flex flex-col md:flex-row md:space-x-16">
+    <!-- Left side: Login and Registration forms -->
+    <section class="flex-1 space-y-12">
+      <!-- Welcome message -->
+      <div class="mb-6">
+        <p class="text-lg font-semibold">¡Bienvenido de vuelta! <br />Inicia sesión y continúa con tus operaciones.</p>
+      </div>
+
+      <!-- Login form -->
+      <form class="space-y-4" aria-label="Formulario de inicio de sesión">
+        <div>
+          <label for="login-email" class="block text-sm font-medium mb-1">Correo electrónico</label>
+          <input
+            type="email"
+            id="login-email"
+            name="login-email"
+            placeholder="Ingresa el correo electrónico"
+            required
+            class="w-full border border-gray-300 rounded-md px-3 py-2"
+          />
+        </div>
+        <div>
+          <label for="login-password" class="block text-sm font-medium mb-1">Contraseña</label>
+          <div class="relative">
+            <input
+              type="password"
+              id="login-password"
+              name="login-password"
+              placeholder="Ingresa la contraseña"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 pr-10"
+            />
+            <button
+              type="button"
+              aria-label="Mostrar contraseña"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+              onclick="togglePasswordVisibility('login-password', this)"
+              tabindex="-1"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="text-sm text-blue-600 hover:underline cursor-pointer mb-4 select-none">
+          ¿Olvidaste tu contraseña?
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          Iniciar sesión
+        </button>
+      </form>
+
+      <!-- Registration form -->
+      <form class="space-y-4" aria-label="Formulario de registro">
+        <div>
+          <label for="register-email" class="block text-sm font-medium mb-1">Correo electrónico</label>
+          <input
+            type="email"
+            id="register-email"
+            name="register-email"
+            placeholder="Ingresa el correo electrónico"
+            required
+            class="w-full border border-gray-300 rounded-md px-3 py-2"
+          />
+        </div>
+        <div>
+          <label for="register-password" class="block text-sm font-medium mb-1">Contraseña</label>
+          <div class="relative">
+            <input
+              type="password"
+              id="register-password"
+              name="register-password"
+              placeholder="Ingresa la contraseña"
+              required
+              class="w-full border border-gray-300 rounded-md px-3 py-2 pr-10"
+            />
+            <button
+              type="button"
+              aria-label="Mostrar contraseña"
+              class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700"
+              onclick="togglePasswordVisibility('register-password', this)"
+              tabindex="-1"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div>
+          <label for="activation-code" class="block text-sm font-medium mb-1">Código de activación</label>
+          <input
+            type="text"
+            id="activation-code"
+            name="activation-code"
+            placeholder="Ingresa el código de activación"
+            required
+            class="w-full border border-gray-300 rounded-md px-3 py-2"
+          />
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-gray-800 text-white font-semibold py-2 rounded-md hover:bg-gray-900 transition"
+        >
+          Registrar
+        </button>
+      </form>
+    </section>
+
+    <!-- Right side: Info image and footer text -->
+    <section class="flex-1 mt-12 md:mt-0 flex flex-col items-center">
+      <img
+        src="https://www.qmission.ai/_next/image?url=%2Fimages%2Fqmission.jpg&w=3840&q=75"
+        alt="Info Image"
+        class="max-w-full rounded-md shadow-md"
+      />
+      <p class="mt-6 text-center text-lg font-semibold">
+        Human Centric Cyber<br />
+        ¡Potencia tus habilidades!
+      </p>
+    </section>
+  </main>
+
+  <script>
+    function togglePasswordVisibility(inputId, button) {
+      const input = document.getElementById(inputId);
+      if (input.type === "password") {
+        input.type = "text";
+        button.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      } else {
+        input.type = "password";
+        button.innerHTML = '<i class="fas fa-eye"></i>';
+      }
+    }
+  </script>
+</body>
+</html>
